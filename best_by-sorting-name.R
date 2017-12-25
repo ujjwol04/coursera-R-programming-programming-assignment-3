@@ -24,9 +24,13 @@ best <- function(state,outcome) {
       rate <- data.new[,c(1,4)]
     }
     
-    #Ordering the new dataframe and selecting the 1,1 data to get hospital with smallest death rate
+    #Ordering the new dataframe and selecting the 1,1 data to get hospital with smallest death rate after ordering the names as well in alphabetical order
     
-    rate[order(as.numeric(rate[,2])),][1,1]
+    equal.rate <- grep(paste("^",min(as.numeric(rate[,2]), na.rm=T),"$", sep = ""), rate[,2])
+    
+    result <- rate[equal.rate,]
+    
+    result[order(result[,1]),][1,1]
     
   }
   
